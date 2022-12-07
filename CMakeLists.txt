@@ -19,7 +19,7 @@ target_include_directories(B3L PUBLIC thirdparty/keystone/include)
 target_include_directories(B3L PUBLIC thirdparty/capstone/include)
 
 target_link_libraries(B3L PRIVATE keystone)
-target_link_libraries(B3L PRIVATE capstone)
+target_link_libraries(B3L PRIVATE capstone-static)
 
 set(BUILD_LIBS_ONLY ON CACHE BOOL "Only build keystone library" FORCE)
 add_subdirectory(thirdparty/keystone)
