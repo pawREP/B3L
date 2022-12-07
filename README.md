@@ -1,2 +1,3 @@
 # B3L
  
+B3L is a personal code library comprised of unit tested types, algorithms and other facilities I find myself needing again and again in personal projects. The library mostly, but not exclusively, provides tools geared towards binary reverse engineering and other low level, platform specific programming tasks such as hooking, in-memory binary rewriting, parsing of mapped images, assembly/disassembly. B3L targets Microsoft Windows x86/x64, supports clang-cl and VS v143 platform tool sets and requires /std:c++20.
