@@ -23,6 +23,10 @@ target_link_libraries(B3L PRIVATE capstone-static)
 
 set(BUILD_LIBS_ONLY ON CACHE BOOL "Only build keystone library" FORCE)
 add_subdirectory(thirdparty/keystone)
+
+set(CAPSTONE_BUILD_SHARED OFF CACHE BOOL "Build static library" FORCE)
+set(CAPSTONE_BUILD_TESTS OFF CACHE BOOL "Build tests" FORCE)
+set(CAPSTONE_BUILD_CSTOOL OFF CACHE BOOL "Build cstool" FORCE)
 add_subdirectory(thirdparty/capstone)
 
 option(B3L_ENABLE_TESTS "Enable unit tests for B3L" OFF)
