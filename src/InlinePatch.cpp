@@ -46,8 +46,7 @@ InlinePatch::InlinePatch(void* _address, const std::string& assembly) {
         code.reset(mem);
     }
 
-    auto encodingLen = assembler.assemble(code.get(), allocationSize);
-    assert(encodingLen);
+    assembler.assemble(code.get(), allocationSize);
     Memory::setPageProtection(code.get(), allocationSize, PAGE_EXECUTE_READ);
 
     detour = InlineDetour(entrypoint, code.get());
