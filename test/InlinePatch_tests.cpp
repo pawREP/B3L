@@ -1,14 +1,17 @@
 #include "B3L/InlineCallbackHook.h"
+#include "B3L/Define.h"
 #include <gtest/gtest.h>
 
 using namespace B3L;
 
+B3L_NEVERINLINE int foo(int a) {
+    return a;
+};
+
 TEST(InlinePatchTests, BasicOperation) {
-    int value = 123;
+    volatile int value = 123;
 
     std::string assembly{ "inc rcx" };
-
-    int (*foo)(int) = [](int a) { return a; };
 
     {
         InlinePatch inlinePatch(foo, assembly);
@@ -25,11 +28,9 @@ TEST(InlinePatchTests, BasicOperation) {
 }
 
 TEST(InlinePatchTests, Move) {
-    int value = 123;
+    volatile int value = 123;
 
     std::string assembly{ "inc rcx" };
-
-    int (*foo)(int) = [](int a) { return a; };
 
     {
         InlinePatch inlinePatch(foo, assembly);
