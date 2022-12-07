@@ -11,9 +11,6 @@ using namespace B3L;
 
 // Link XInput as a module that exports functions by ordinal
 #pragma comment(lib, "XInput.lib")
-namespace {
-    auto _0 = &XInputGetState; // This is needed so XInputGetState gets imported into the test binary.
-}
 
 class IatHookTests : public ::testing::Test {
 protected:
@@ -47,6 +44,9 @@ TEST_F(IatHookTests, ConstructWithOrdinal) {
     int XInputGetStateOrdinal                 = 2;
     static auto proc                          = [](DWORD, XINPUT_STATE*) { return 0ul; };
     unsigned long (*fp)(DWORD, XINPUT_STATE*) = proc;
+
+    XINPUT_STATE state;
+    XInputGetState(0, &state);
 
     auto h = std::make_unique<XInputGetStateHook_t>("XINPUT1_4.dll", XInputGetStateOrdinal, fp);
 }
