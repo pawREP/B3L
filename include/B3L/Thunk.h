@@ -1,6 +1,7 @@
 #pragma once
 #include "Allocator.h"
 #include "Cast.h"
+#include "Memory.h"
 #include <Windows.h>
 #include <algorithm>
 #include <cassert>
@@ -65,8 +66,7 @@ namespace B3L {
         }
 
         static void markThunkReadExecute(ThunkData* thunk) {
-            DWORD old{};
-            assert(VirtualProtect(thunk, sizeof(ThunkData), PAGE_EXECUTE_READ, &old));
+            Memory::setPageProtection(thunk, sizeof(ThunkData), PAGE_EXECUTE_READ);
         }
 
         std::unique_ptr<ThunkData, Deleter> thunk = nullptr;
