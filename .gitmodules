@@ -1,0 +1,9 @@
+[submodule "thirdparty/googletest"]
+	path = thirdparty/googletest
+	url = https://github.com/google/googletest
+[submodule "thirdparty/keystone"]
+	path = thirdparty/keystone
+	url = https://github.com/keystone-engine/keystone
+[submodule "thirdparty/capstone"]
+	path = thirdparty/capstone
+	url = https://github.com/capstone-engine/capstone
