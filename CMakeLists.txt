@@ -28,6 +28,6 @@ add_subdirectory(thirdparty/capstone)
 option(B3L_ENABLE_TESTS "Enable unit tests for B3L" OFF)
 
 if(B3L_ENABLE_TESTS)
-  add_subdirectory(thirdparty/google-test)
+  add_subdirectory(thirdparty/googletest)
   add_subdirectory(test)
 endif()
