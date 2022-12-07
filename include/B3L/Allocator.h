@@ -22,7 +22,7 @@ namespace B3L {
 
     struct VirtualFreeDeleter {
         void operator()(void* p) const {
-            assert(VirtualFree(p, 0, MEM_RELEASE));
+            VirtualFree(p, 0, MEM_RELEASE);
         }
     };
 
