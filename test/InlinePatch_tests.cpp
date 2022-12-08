@@ -4,9 +4,11 @@
 
 using namespace B3L;
 
-B3L_NEVERINLINE int foo(int a) {
-    return a;
-};
+namespace {
+    B3L_NEVERINLINE int foo(int a, int b = 0) {
+        return a + b;
+    };
+} // namespace
 
 TEST(InlinePatchTests, BasicOperation) {
     volatile int value = 123;
@@ -75,12 +77,13 @@ protected:
     static inline int value;
 };
 
-B3L_NEVERINLINE int add(int a, int b) {
-    return a + b;
-};
+namespace {
+    B3L_NEVERINLINE int add(int a, int b) {
+        return a + b;
+    };
+} // namespace
 
 TEST_F(InlineHookTests, InlineHookBasic) {
-    // int (*add)(int, int) = [](int a, int b) { return a + b; };
 
     EXPECT_EQ(flag, false);
     {
@@ -99,9 +102,11 @@ TEST_F(InlineHookTests, InlineHookBasic) {
     EXPECT_EQ(flag, false);
 }
 
-B3L_NEVERINLINE int square(int a) {
-    return a * a;
-};
+namespace {
+    B3L_NEVERINLINE int square(int a) {
+        return a * a;
+    };
+} // namespace
 
 TEST_F(InlineHookTests, InlineHookWithUserPtr) {
 
