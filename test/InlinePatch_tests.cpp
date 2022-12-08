@@ -1,5 +1,5 @@
-#include "B3L/InlineCallbackHook.h"
 #include "B3L/Define.h"
+#include "B3L/InlineCallbackHook.h"
 #include <gtest/gtest.h>
 
 using namespace B3L;
@@ -75,8 +75,12 @@ protected:
     static inline int value;
 };
 
+B3L_NEVERINLINE int add(int a, int b) {
+    return a + b;
+};
+
 TEST_F(InlineHookTests, InlineHookBasic) {
-    int (*add)(int, int) = [](int a, int b) { return a + b; };
+    // int (*add)(int, int) = [](int a, int b) { return a + b; };
 
     EXPECT_EQ(flag, false);
     {
@@ -95,8 +99,11 @@ TEST_F(InlineHookTests, InlineHookBasic) {
     EXPECT_EQ(flag, false);
 }
 
+B3L_NEVERINLINE int square(int a) {
+    return a * a;
+};
+
 TEST_F(InlineHookTests, InlineHookWithUserPtr) {
-    int (*square)(int) = [](int a) { return a * a; };
 
     int newValue = 2;
 
