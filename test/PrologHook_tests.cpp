@@ -1,14 +1,15 @@
 #include "B3L/PrologHook.h"
+#include "B3L/Define.h"
 #include <gtest/gtest.h>
 #include <limits>
 
 using namespace B3L;
 
-double originalBigFunction(float a, int b, int c, size_t d, double e) {
+B3L_NEVERINLINE double originalBigFunction(float a, int b, int c, size_t d, double e) {
     return a * b + c - d + e;
 }
 
-double newBigFunction(float a, int b, int c, size_t d, double e) {
+B3L_NEVERINLINE double newBigFunction(float a, int b, int c, size_t d, double e) {
     return a * (b + c + d + e);
 }
 
