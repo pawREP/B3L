@@ -13,7 +13,7 @@ InlineDetour::InlineDetour(uint8_t* entrypoint, const uint8_t* target) : entrypo
 
 B3L::InlineDetour::InlineDetour(InlineDetour&& other) noexcept
 : entrypoint(other.entrypoint), entrypointSize(other.entrypointSize),
-  entrypointInstructions(std::move(other.entrypointInstructions)), trampoline(std::move(other.trampoline)){
+  entrypointInstructions(std::move(other.entrypointInstructions)), trampoline(std::move(other.trampoline)) {
 }
 
 InlineDetour& B3L::InlineDetour::operator=(InlineDetour&& other) noexcept {
