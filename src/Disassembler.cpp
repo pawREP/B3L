@@ -12,6 +12,8 @@ csh B3L::Disassembler<mode>::getHandle() {
         auto err = cs_open(CS_ARCH_X86, scast<cs_mode>(mode), &handle);
         if(err != CS_ERR_OK)
             throw std::runtime_error(std::format("Failed to initialize Capstone. Err: {}", cs_strerror(err)).c_str());
+
+        cs_option(handle, CS_OPT_DETAIL, CS_OPT_ON);
     }
 
     return handle;
