@@ -18,6 +18,10 @@ namespace B3L {
 
         static std::vector<Instruction> disassembleEntrypoint(uint8_t* entrypoint, size_t* size = nullptr);
 
+    protected:
+        std::vector<Instruction> entrypointInstructions;
+        size_t entrypointSize{};
+
     private:
         void detourEntrypoint(const uint8_t* target);
         void restoreEntrypoint();
@@ -25,9 +29,7 @@ namespace B3L {
         static const int minEntrypointSize = 5; // Smallest possible entrypoint size. (size of relative jmp instruction)
 
         uint8_t* entrypoint = nullptr;
-        size_t entrypointSize{};
-        std::vector<Instruction> entrypointInstructions;
-        //
+
         using Allocator = VirtualAllocAllocator<uint8_t, PAGE_EXECUTE_READWRITE>;
         std::unique_ptr<Allocator::value_type, deleter_trait_t<Allocator>> trampoline = nullptr;
     };
