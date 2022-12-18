@@ -1,5 +1,5 @@
-#include "B3L/PrologHook.h"
 #include "B3L/Define.h"
+#include "B3L/PrologHook.h"
 #include <gtest/gtest.h>
 #include <limits>
 
@@ -19,4 +19,22 @@ TEST(PrologHookTest, Test0) {
 
     PrologHook prologHook(&originalBigFunction, &newBigFunction);
     EXPECT_EQ(originalBigFunction(2, 3, 4, 5, 6), newr);
+    EXPECT_EQ(prologHook.invokeOriginal<double (*)(float, int, int, size_t, double)>(2, 3, 4, 5, 6), oldr);
+}
+
+DWORD MyGetCurrentProcessId() {
+    return 0;
+}
+
+TEST(PrologHookTest, Test1) {
+    auto realPid = GetCurrentProcessId();
+    EXPECT_NE(realPid, 0);
+
+    PrologHook prologHook(&GetCurrentProcessId, &MyGetCurrentProcessId);
+
+    auto fakePid = GetCurrentProcessId();
+    EXPECT_EQ(fakePid, 0);
+
+    auto realPid2 = prologHook.invokeOriginal<DWORD (*)()>();
+    EXPECT_EQ(realPid, realPid2);
 }
