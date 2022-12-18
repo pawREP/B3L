@@ -9,19 +9,6 @@ csh B3L::Disassembler<mode>::getHandle() {
     static csh handle{};
 
     if(!handle) {
-        // TODO: Remove mem setup step.
-        // This whole memory setup shouldn't be needed. Presumably a temporary bug with capstone.
-        // clang-format off
-        cs_opt_mem setup{ 
-            .malloc = &malloc, 
-            .calloc = &calloc, 
-            .realloc = &realloc, 
-            .free = &free, 
-            .vsnprintf = &vsnprintf 
-        };
-        // clang-format on
-        assert(cs_option(0, CS_OPT_MEM, rcast<size_t>(&setup)) == CS_ERR_OK);
-
         auto err = cs_open(CS_ARCH_X86, scast<cs_mode>(mode), &handle);
         if(err != CS_ERR_OK)
             throw std::runtime_error(std::format("Failed to initialize Capstone. Err: {}", cs_strerror(err)).c_str());
