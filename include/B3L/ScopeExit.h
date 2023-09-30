@@ -5,6 +5,10 @@
 
 namespace B3L {
 
+#define SCOPE_EXIT const auto ANONYMOUS = detail::MakeScopeExitHelper{} += [&]()
+#define SCOPE_SUCCESS const auto ANONYMOUS = detail::MakeScopeSuccessHelper{} += [&]()
+#define SCOPE_FAILURE const auto ANONYMOUS = detail::MakeScopeFailureHelper{} += [&]()
+
     namespace detail {
 
         struct ScopeExitExecCondition {};
@@ -77,5 +81,30 @@ namespace B3L {
         explicit ScopeFailure(Callable&& callable)
         : detail::ScopeExit<Callable, detail::ScopeExitFailure>(std::forward<Callable&&>(callable)){};
     };
+
+    namespace detail {
+
+        struct MakeScopeExitHelper {
+            template <typename F>
+            B3L::ScopeExit<F> operator+=(F&& fn) {
+                return B3L::ScopeExit<F>(std::move(fn));
+            }
+        };
+
+        struct MakeScopeSuccessHelper {
+            template <typename F>
+            B3L::ScopeSuccess<F> operator+=(F&& fn) {
+                return B3L::ScopeSuccess<F>(std::move(fn));
+            }
+        };
+
+        struct MakeScopeFailureHelper {
+            template <typename F>
+            B3L::ScopeFailure<F> operator+=(F&& fn) {
+                return B3L::ScopeFailure<F>(std::move(fn));
+            }
+        };
+
+    } // namespace detail
 
 } // namespace B3L

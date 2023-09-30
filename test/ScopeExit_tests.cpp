@@ -43,6 +43,16 @@ TEST_F(ScopeExitTests, StdFunction) {
     EXPECT_TRUE(flag);
 }
 
+TEST_F(ScopeExitTests, MacroHelper) {
+    {
+        SCOPE_EXIT {
+            flag = true;
+        };
+        EXPECT_FALSE(flag);
+    }
+    EXPECT_TRUE(flag);
+}
+
 TEST(ScopeFailureTests, OnlyExcuteWhileExceptionInFlight) {
     bool flag = false;
 
