@@ -1,5 +1,6 @@
 #pragma once
 #include "Define.h"
+#include <bit>
 #include <ios>
 #include <stdexcept>
 #include <type_traits>
@@ -44,7 +45,6 @@ namespace B3L {
     [[nodiscard]] constexpr inline auto sign_cast(From v) {
         return domain_cast<std::make_unsigned_t<From>>(v);
     }
-
 
     template <typename Enum>
     [[nodiscard]] constexpr inline auto to_underlying(Enum en) noexcept {
