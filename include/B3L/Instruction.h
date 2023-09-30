@@ -1,8 +1,9 @@
 #pragma once
-#include "capstone/capstone.h"
-#include <array>
-#include <string>
-#include <vector>
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "capstone/capstone.h"
+    #include <array>
+    #include <string>
+    #include <vector>
 
 namespace B3L {
 
@@ -63,3 +64,5 @@ namespace B3L {
     };
 
 } // namespace B3L
+
+#endif

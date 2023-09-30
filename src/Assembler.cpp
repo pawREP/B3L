@@ -1,8 +1,9 @@
-#include "Assembler.h"
-#include "Cast.h"
-#include "ScopeExit.h"
-#include "keystone/keystone.h"
-#include <format>
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "Assembler.h"
+    #include "Cast.h"
+    #include "ScopeExit.h"
+    #include "keystone/keystone.h"
+    #include <format>
 
 using namespace B3L;
 
@@ -64,3 +65,5 @@ void Assembler::Assembler<mode>::clear() noexcept {
 
 template class Assembler::Assembler<Assembler::Mode::x86>;
 template class Assembler::Assembler<Assembler::Mode::x64>;
+
+#endif

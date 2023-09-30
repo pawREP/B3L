@@ -1,7 +1,8 @@
-#include "B3L/Define.h"
-#include "B3L/PrologHook.h"
-#include <gtest/gtest.h>
-#include <limits>
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "B3L/Define.h"
+    #include "B3L/PrologHook.h"
+    #include <gtest/gtest.h>
+    #include <limits>
 
 using namespace B3L;
 
@@ -38,3 +39,5 @@ TEST(PrologHookTest, Test1) {
     auto realPid2 = prologHook.invokeOriginal<DWORD (*)()>();
     EXPECT_EQ(realPid, realPid2);
 }
+
+#endif

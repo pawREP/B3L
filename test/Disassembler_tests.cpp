@@ -1,7 +1,8 @@
-#include "B3L/Cast.h"
-#include "B3L/Disassembler.h"
-#include <array>
-#include <gtest/gtest.h>
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "B3L/Cast.h"
+    #include "B3L/Disassembler.h"
+    #include <array>
+    #include <gtest/gtest.h>
 
 using namespace B3L;
 
@@ -28,3 +29,5 @@ TEST(DisassemblerTest, AssembleX86) {
     EXPECT_STREQ(instructions[0].toString().c_str(), "push eax");
     EXPECT_STREQ(instructions[1].toString().c_str(), "xchg dword ptr [esp], eax");
 }
+
+#endif

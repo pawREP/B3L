@@ -1,7 +1,8 @@
 #pragma once
-#include "Assembler.h"
-#include "Hook.h"
-#include "InlinePatch.h"
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "Assembler.h"
+    #include "Hook.h"
+    #include "InlinePatch.h"
 
 namespace B3L {
 
@@ -108,3 +109,5 @@ namespace B3L {
     }
 
 } // namespace B3L
+
+#endif

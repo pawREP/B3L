@@ -1,9 +1,10 @@
-#include "InlinePatch.h"
-#include "Allocator.h"
-#include "Assembler.h"
-#include "Disassembler.h"
-#include "Memory.h"
-#include <numeric>
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "InlinePatch.h"
+    #include "Allocator.h"
+    #include "Assembler.h"
+    #include "Disassembler.h"
+    #include "Memory.h"
+    #include <numeric>
 
 using namespace B3L;
 
@@ -59,3 +60,5 @@ void B3L::InlinePatch::enable() {
 void B3L::InlinePatch::disable() {
     *enabled = false;
 }
+
+#endif

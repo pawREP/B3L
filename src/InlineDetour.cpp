@@ -1,4 +1,5 @@
-#include "InlineDetour.h"
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "InlineDetour.h"
 #include "Assembler.h"
 #include "Cast.h"
 #include "Disassembler.h"
@@ -96,3 +97,5 @@ void B3L::InlineDetour::restoreEntrypoint() {
     }
     Memory::setPageProtection(entrypoint, entrypointSize, oldProtection);
 }
+
+#endif

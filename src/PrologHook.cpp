@@ -1,5 +1,6 @@
-#include "PrologHook.h"
-#include "Assembler.h"
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "PrologHook.h"
+    #include "Assembler.h"
 
 void B3L::PrologHook::buildoriginalEntryPointThunk() {
 
@@ -31,3 +32,5 @@ void B3L::PrologHook::buildoriginalEntryPointThunk() {
     originalEntryPointThunk.reset(Allocator{}.allocate(allocationSize));
     assembler.assemble(originalEntryPointThunk.get(), allocationSize);
 }
+
+#endif

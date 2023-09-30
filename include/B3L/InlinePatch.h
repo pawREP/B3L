@@ -1,11 +1,11 @@
 #pragma once
-
-#include "Allocator.h"
-#include "Define.h"
-#include "Disassembler.h"
-#include "InlineDetour.h"
-#include <memory>
-#include <vector>
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "Allocator.h"
+    #include "Define.h"
+    #include "Disassembler.h"
+    #include "InlineDetour.h"
+    #include <memory>
+    #include <vector>
 
 namespace B3L {
 
@@ -30,3 +30,5 @@ namespace B3L {
     };
 
 } // namespace B3L
+
+#endif

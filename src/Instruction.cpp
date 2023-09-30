@@ -1,5 +1,6 @@
-#include "Instruction.h"
-#include <format>
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "Instruction.h"
+    #include <format>
 
 using namespace B3L;
 
@@ -53,3 +54,5 @@ Instruction::Instruction(const cs_insn* insn) {
 std::string Instruction::toString() const {
     return std::format("{} {}", mnemonic, operandsString);
 }
+
+#endif

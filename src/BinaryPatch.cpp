@@ -1,4 +1,5 @@
-#include "BinaryPatch.h"
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "BinaryPatch.h"
 #include "Assembler.h"
 #include "Cast.h"
 #include "Memory.h"
@@ -48,3 +49,5 @@ void B3L::BinaryPatch::disable() const {
     std::copy_n(originalEntrypointBytes.begin(), originalEntrypointBytes.size(), entrypoint);
     Memory::setPageProtection(entrypoint, originalEntrypointBytes.size(), oldProtect);
 }
+
+#endif

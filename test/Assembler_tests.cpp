@@ -1,5 +1,6 @@
-#include "B3L/Assembler.h"
-#include <gtest/gtest.h>
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "B3L/Assembler.h"
+    #include <gtest/gtest.h>
 
 using namespace B3L::Assembler;
 
@@ -58,3 +59,5 @@ TEST(AssemblerTest, UseImmediates) {
 
     auto encoding = assembler.assemble(0);
 }
+
+#endif

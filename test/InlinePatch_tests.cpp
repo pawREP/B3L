@@ -1,6 +1,7 @@
-#include "B3L/Define.h"
-#include "B3L/InlineCallbackHook.h"
-#include <gtest/gtest.h>
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "B3L/Define.h"
+    #include "B3L/InlineCallbackHook.h"
+    #include <gtest/gtest.h>
 
 using namespace B3L;
 
@@ -119,3 +120,5 @@ TEST_F(InlineHookTests, InlineHookWithUserPtr) {
     EXPECT_EQ(square(2), 4);
     EXPECT_EQ(value, 2);
 }
+
+#endif

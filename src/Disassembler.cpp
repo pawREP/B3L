@@ -1,8 +1,9 @@
-#include "Disassembler.h"
-#include "Cast.h"
-#include <cassert>
-#include <format>
-#include <vector>
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "Disassembler.h"
+    #include "Cast.h"
+    #include <cassert>
+    #include <format>
+    #include <vector>
 
 template <B3L::DisassemblerMode mode>
 csh B3L::Disassembler<mode>::getHandle() {
@@ -27,8 +28,8 @@ B3L::Disassembler<mode>::disassemble(const uint8_t* code, size_t size, uintptr_t
     const size_t isCount = cs_disasm(getHandle(), code, size, address, count, &insn);
     if(!isCount)
         return std::vector<Instruction>{};
-    
-    //const ScopeExit _{ [insn, isCount] { cs_free(insn, isCount); } }; // NOLINT
+
+    // const ScopeExit _{ [insn, isCount] { cs_free(insn, isCount); } }; // NOLINT
     const ScopeExit _{ [insn, isCount] { cs_free(insn, isCount); } }; // NOLINT
 
     std::vector<Instruction> instructions;
@@ -86,3 +87,5 @@ bool B3L::StreamDisassembler<mode>::seek([[maybe_unused]] uintptr_t addr) {
 
 template class B3L::StreamDisassembler<B3L::DisassemblerMode::x86>;
 template class B3L::StreamDisassembler<B3L::DisassemblerMode::x64>;
+
+#endif

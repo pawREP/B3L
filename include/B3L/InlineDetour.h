@@ -1,8 +1,9 @@
 #pragma once
-#include "Allocator.h"
-#include "Define.h"
-#include "Instruction.h"
-#include <cstdint>
+#ifdef B3L_HAVE_ASSEMBLERS
+    #include "Allocator.h"
+    #include "Define.h"
+    #include "Instruction.h"
+    #include <cstdint>
 
 namespace B3L {
 
@@ -35,3 +36,5 @@ namespace B3L {
     };
 
 } // namespace B3L
+
+#endif
